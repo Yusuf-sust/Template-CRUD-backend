@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 let conn = null;
 
@@ -15,6 +15,8 @@ const initMongo = async mongoUri => {
     
         // `await`ing connection after assigning to the `conn` variable
         // to avoid multiple function calls creating new connections
+        if(conn)
+            console.log("Database connected succesfully");
         await conn;
     }
     

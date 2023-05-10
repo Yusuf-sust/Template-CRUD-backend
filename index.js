@@ -1,5 +1,5 @@
-const initMongo = require('./src/db/mongoose')
-const app = require('./config/express')
+const initMongo = require('./src/db/mongoose');
+const app = require('./config/express');
 const config = require('./config/config');
 
 initMongo(config.mongoUri).then( async () => {
