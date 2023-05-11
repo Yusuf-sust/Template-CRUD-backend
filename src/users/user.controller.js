@@ -34,3 +34,21 @@ exports.getUsers = async (req, res, next) => {
         next(err);
     }
 };
+
+exports.getUser = async (req, res, next) => {
+    const {
+        params: {userID = ''}
+    } = req;
+        const user = await helper.getUser(userID);
+
+        return res.status(httpStatus.OK).send({
+            message: 'Successfully got specific user',
+            user
+        });
+    try {
+
+    } catch (err) {
+        err.status = httpStatus.BAD_REQUEST;
+        next(err);
+    }
+}

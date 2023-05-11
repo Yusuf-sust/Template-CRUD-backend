@@ -8,4 +8,16 @@ router
     .post(userCtrl.createUser)
     .get(userCtrl.getUsers);
 
+router
+    .route('/user/:userID')
+    .get(
+        userCtrl.getUser
+    )
+    .put(
+
+    )
+    .delete(
+
+    );
+
 module.exports = router;
