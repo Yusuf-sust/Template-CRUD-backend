@@ -39,16 +39,45 @@ exports.getUser = async (req, res, next) => {
     const {
         params: {userID = ''}
     } = req;
+
+    try {
         const user = await helper.getUser(userID);
 
         return res.status(httpStatus.OK).send({
             message: 'Successfully got specific user',
             user
         });
-    try {
 
     } catch (err) {
         err.status = httpStatus.BAD_REQUEST;
         next(err);
     }
-}
+};
+
+exports.updateUser = async (req, res, next) => {
+    const {
+        params: {userID = ''},
+        body = {}
+    } = req;
+    console.log("Asce", body);
+    const allowedUpdates = ['firstName', 'lastName', 'username', 'password', 'email'];
+    const updates = Object.keys(body);
+    const isValidUpdate = updates.every(update => allowedUpdates.includes(update));
+    if(!isValidUpdate) {
+        err.status = httpStatus.BAD_REQUEST;
+        next(err);
+    }
+    try {
+        const user = await helper.getUser(userID);
+        updates.forEach(update => user[update] = body[update]);
+        const updatedUser = await user.save();
+        return res.status(httpStatus.OK).send({
+            message: 'Successfully updated user.',
+            updatedUser
+        });
+
+    } catch (err) {
+        err.status = httpStatus.BAD_REQUEST;
+        next(err);
+    }
+};

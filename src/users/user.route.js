@@ -14,7 +14,7 @@ router
         userCtrl.getUser
     )
     .put(
-
+        userCtrl.updateUser
     )
     .delete(
 
