@@ -59,7 +59,6 @@ exports.updateUser = async (req, res, next) => {
         params: {userID = ''},
         body = {}
     } = req;
-    console.log("Asce", body);
     const allowedUpdates = ['firstName', 'lastName', 'username', 'password', 'email'];
     const updates = Object.keys(body);
     const isValidUpdate = updates.every(update => allowedUpdates.includes(update));

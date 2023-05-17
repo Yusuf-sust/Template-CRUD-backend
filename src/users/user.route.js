@@ -13,7 +13,7 @@ router
     .get(
         userCtrl.getUser
     )
-    .put(
+    .patch(
         userCtrl.updateUser
     )
     .delete(
