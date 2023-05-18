@@ -17,7 +17,7 @@ router
         userCtrl.updateUser
     )
     .delete(
-
+        userCtrl.deleteUser
     );
 
 module.exports = router;

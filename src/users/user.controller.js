@@ -80,3 +80,29 @@ exports.updateUser = async (req, res, next) => {
         next(err);
     }
 };
+
+exports.deleteUser = async (req, res, next) => {
+    const {
+        params: {userID = ''}
+    } = req;
+
+    try {
+        const user = await helper.getUser(userID);
+        if(!user) {
+            return res.status(httpStatus.BAD_REQUEST).send({
+                message: 'Do not found specific user',
+            });
+        }
+
+        await helper.deleteUser(userID);
+
+        return res.status(httpStatus.OK).send({
+            message: 'Successfully deleted specific user',
+            user
+        });
+
+    } catch (err) {
+        err.status = httpStatus.BAD_REQUEST;
+        next(err);
+    }
+};
